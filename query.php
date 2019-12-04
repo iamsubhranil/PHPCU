@@ -1,20 +1,41 @@
 <html>
+    <style>
+        .highlight {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            /*text-align: center; */
+           /* /* border-bottom: 1px solid #ddd;  */
+            padding: 10px;
+            border: none;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
     <body>
-        <input type="radio" name="choice" value="1" id="choice_artist" checked> Artist </input>
-        <input type="radio" name="choice" value="2" id="choice_type"> Type </input>
-        <input type="radio" name="choice" value="3" id="choice_name"> Art Name </input>
-
-        <input type="text" id="search_term" style="width: 100%" onkeydown="perform_search()"> </input>
-
-        <table id="populate" style="width: 100%"> 
-            <th> Art Name </th>
-            <th> Date </th>
-            <th> Type </th>
-            <th> Artist </th>
+        Search By :
+        <input type="radio" name="choice" onclick="perform_search()" id="choice_name" checked> Art </input>
+        <input type="radio" name="choice" onclick="perform_search()" id="choice_type"> Type </input>
+        <input type="radio" name="choice" onclick="perform_search()" id="choice_artist"> Artist </input>
+        <br> <br>
+        Keyword : <input type="text" id="search_term" style="width: 90%" onkeyup="perform_search()"> </input>
+        <br> <br>
+        <table id="populate" style="width: 100%">
+            <tr>
+                <th style="width: 40%"> Art </th>
+                <th style="width: 25%"> Type </th>
+                <th style="width: 25%"> Artist </th>
+                <th style="width: 10%"> Date </th>
+            </tr>
         </table>
     </body>
     <script>
-        
+
         function post_data(file, data, doSomething) {
             var http = new XMLHttpRequest();
             var url = file;
@@ -30,13 +51,46 @@
             http.send(params);
         }
 
-        function populate_table(display) {
+        function highlight_cell(cell, text) {
+            var innerHTML = cell.innerHTML;
+           // console.log(cell.innerHTML);
+            var index = innerHTML.toLowerCase().indexOf(text);
+            if (index >= 0) {
+                innerHTML = innerHTML.substring(0,index) + "<span class='highlight'>"
+                            + innerHTML.substring(index,index+text.length) + "</span>"
+                            + innerHTML.substring(index + text.length);
+                cell.innerHTML = innerHTML;
+            }
+        }
+
+        function reset_highlight_cell(cell) {
+            cell.innerHTML = cell.getAttribute("data-original");
+        }
+
+        function populate_table_conditional(cellid, text) {
             var tbl = document.getElementById("populate");
-            for(var i = 1; i < tbl.rows.length; i++) {
-                if(!display(tbl.rows[i])) {
-                    tbl.rows[i].style.display = "none";
+            text = text.toLowerCase();
+            for(var i = 0; i < tbl.rows[0].cells.length;i++) {
+                var header = tbl.rows[0].cells[i];
+                if(i == cellid) {
+                    header.style.backgroundColor = "#000000";
+                    header.style.color = "#ffffff";
                 } else {
-                    tbl.rows[i].style.display = "";
+                    header.style.backgroundColor = "inherit";
+                    header.style.color = "inherit";
+                }
+            }
+            for(var i = 1; i < tbl.rows.length; i++) {
+                var r = tbl.rows[i];
+                var c = r.cells[cellid];
+                if(c.getAttribute("data-original").toLowerCase().indexOf(text) >= 0) {
+                    for(var j = 0;j < r.cells.length; j++)
+                        reset_highlight_cell(r.cells[j]);
+                    highlight_cell(c, text);
+                    r.style.display = "";
+                }
+                else{
+                    r.style.display = "none";
                 }
             }
         }
@@ -47,18 +101,11 @@
             var by_name = document.getElementById("choice_name").checked;
             var value = document.getElementById("search_term").value;
             if(by_artist) {
-                populate_table(function(x) {
-                   // console.log(x.cells[3].innerHTML);
-                    return x.cells[3].innerHTML.toLowerCase().indexOf(value.toLowerCase()) != -1;
-                });
+                populate_table_conditional(2, value);
             } else if(by_type) {
-                populate_table(function(x) {
-                    return x.cells[2].innerHTML.toLowerCase().indexOf(value.toLowerCase()) != -1;
-                });
+                populate_table_conditional(1, value);
             } else {
-                populate_table(function(x) {
-                    return x.cells[0].innerHTML.toLowerCase().indexOf(value.toLowerCase()) != -1;
-                });
+                populate_table_conditional(0, value);
             }
         }
 
@@ -74,23 +121,29 @@
                 var cell3 = document.createElement("td");
                 var cell4 = document.createElement("td");
                 var textnode1 = document.createTextNode(r.artname);
-                var textnode2 = document.createTextNode(r.artdate);
-                var textnode3 = document.createTextNode(r.style);
-                var textnode4 = document.createTextNode(r.artist);
+                var textnode2 = document.createTextNode(r.style);
+                var textnode3 = document.createTextNode(r.artist);
+                var textnode4 = document.createTextNode(r.artdate);
                 cell1.appendChild(textnode1);
+                cell1.setAttribute("data-original", r.artname);
                 cell2.appendChild(textnode2);
+                cell2.setAttribute("data-original", r.style);
                 cell3.appendChild(textnode3);
+                cell3.setAttribute("data-original", r.artist);
                 cell4.appendChild(textnode4);
+                cell4.setAttribute("data-original", r.artdate);
                 row.appendChild(cell1);
                 row.appendChild(cell2);
                 row.appendChild(cell3);
                 row.appendChild(cell4);
+                row.style.display = "";
                 tbl.appendChild(row);
             }
         }
 
         function populate_all() {
             post_data("query_helper.php", "query=showall", initializeTable);
+            perform_search();
         }
 
         window.onload = populate_all;
