@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2019 at 08:57 AM
+-- Generation Time: Dec 11, 2019 at 09:13 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -41,21 +41,21 @@ CREATE TABLE `art` (
 --
 
 INSERT INTO `art` (`artid`, `artname`, `artdate`, `style`, `artist`) VALUES
-(1, ' Charles I IN Three Positions ', '1523-03-28', ' Earth Art ', ' Jasper Johns '),
-(2, ' Las Meninas ', '1515-05-16', ' Art Noveau ', ' Jan Van Eyck '),
-(3, ' Mr AND Mrs Robert Andrews ', '1333-03-19', ' Expressionism ', ' Roy Lichtenstein '),
-(4, ' Napoleon Crossing The Alps ', '1282-06-11', ' Cubism ', ' Francisco De Goya '),
-(5, ' Pilgrimage TO Cythera ', '1542-02-16', ' Impressionism ', ' Jacques '),
-(6, ' Primavera ', '1721-08-29', ' Earth Art ', ' Piet Mondrian '),
-(7, ' The Birth Of Venus ', '1543-09-25', ' Baroque ', ' Edward Hopper '),
-(8, ' The Creation Of Adam ', '1372-08-23', ' Avant - garde ', ' Hans Memling '),
-(9, ' The Gleaners ', '1034-06-17', ' Classicism ', ' Georges Seurat '),
-(10, ' The Grand Odalisque ', '1212-12-12', ' Baroque ', ' Jan Vermeer '),
-(11, ' The Gross Clinic ', '1111-11-11', ' Minimalism ', ' Hieronymus Bosch '),
-(12, ' The LAST Supper ', '1288-02-15', ' Abstract ', ' Gustav Klimt '),
-(13, ' The Ninth Wave ', '1432-05-16', ' Futurism ', ' Fernand Ler '),
-(14, ' The Sleeping Gypsy ', '1737-12-11', ' Earth Art ', ' Hans Holbein The Younger '),
-(15, ' The Triumph Of Galatea ', '1666-01-09', ' Avant - garde ', ' Michelangelo Buonarroti '),
+(1, 'Charles I IN Three Positions', '1523-03-28', ' Earth Art ', 'Jasper Johns'),
+(2, 'Las Meninas', '1515-05-16', ' Art Noveau ', 'Jan Van Eyck'),
+(3, 'Mr AND Mrs Robert Andrews', '1333-03-19', ' Expressionism ', 'Roy Lichtenstein'),
+(4, 'Napoleon Crossing The Alps', '1282-06-11', ' Cubism ', 'Francisco De Goya'),
+(5, 'Pilgrimage TO Cythera', '1542-02-16', ' Impressionism ', 'Jacques'),
+(6, 'Primavera', '1721-08-29', ' Earth Art ', 'Piet Mondrian'),
+(7, 'The Birth Of Venus', '1543-09-25', ' Baroque ', 'Edward Hopper'),
+(8, 'The Creation Of Adam', '1372-08-23', ' Avant - garde ', 'Hans Memling'),
+(9, 'The Gleaners', '1034-06-17', ' Classicism ', 'Georges Seurat'),
+(10, 'The Grand Odalisque', '1212-12-12', ' Baroque ', 'Jan Vermeer'),
+(11, 'The Gross Clinic', '1111-11-11', ' Minimalism ', 'Hieronymus Bosch'),
+(12, 'The LAST Supper', '1288-02-15', ' Abstract ', 'Gustav Klimt'),
+(13, 'The Ninth Wave', '1432-05-16', ' Futurism ', 'Fernand Ler'),
+(14, 'The Sleeping Gypsy', '1737-12-11', ' Earth Art ', 'Hans Holbein The Younger'),
+(15, 'The Triumph Of Galatea', '1666-01-09', ' Avant - garde ', 'Michelangelo Buonarroti'),
 (16, 'American Gothic', '1341-03-05', 'Post-Impressionism', 'Gentileschi, Artemisia'),
 (17, 'Bacchus And Ariadne', '1500-03-08', 'Expressionism', 'Frederic Edwin Church'),
 (18, 'Large Bathers', '1668-10-08', 'Cubism', 'Tommaso Masaccio'),
@@ -63,14 +63,14 @@ INSERT INTO `art` (`artid`, `artname`, `artdate`, `style`, `artist`) VALUES
 (20, 'Musicians', '1672-01-12', 'Performance Art', 'William Hogarth'),
 (21, 'Olympia', '1409-02-13', 'Neo-Impressionalism', 'James Ensor'),
 (22, 'Pollice Verso', '1327-10-20', 'Performance Art', 'Paul Canne'),
-(23, 'St. George And The Dragon', '1009-08-07', 'Art Noveau', 'Georgia O Keefe '),
+(23, 'St. George And The Dragon', '1009-08-07', 'Art Noveau', 'Georgia O Keefe'),
 (24, 'Sunday Afternoon On The Island', '1034-02-22', 'Rococo', 'David Hockney'),
 (25, 'The Liberty Leading The People', '1284-04-21', 'Suprematism', 'Jean'),
 (26, 'The Sleepers', '1735-08-18', 'Earth Art', 'Giotto Di Bondone'),
 (27, 'The Swing', '1370-02-27', 'Constructivism', 'Winslow Homer'),
 (28, 'The Third Of May 1808', '1208-01-09', 'Expressionism', 'Simone Martini'),
 (29, 'The Tower Of Babel', '1485-01-11', 'Classicism', 'El Greco'),
-(30, 'The Wanderer Above The Sea Of ', '1127-04-23', 'Impressionism', 'Ouard Manet'),
+(30, 'The Wanderer Above The Sea Of', '1127-04-23', 'Impressionism', 'Ouard Manet'),
 (31, 'View Of Toledo', '1687-03-21', 'Avant-garde', 'Claude Lorrain');
 
 -- --------------------------------------------------------
